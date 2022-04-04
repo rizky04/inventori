@@ -53,6 +53,7 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div id="detail_barang"></div>
                            <div class="form-group">
                                 <label>Jumlah barang</label>

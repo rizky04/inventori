@@ -66,14 +66,14 @@ class BarangKeluarController extends Controller
         $barang = Barang::find($request->id_barang);
 
         if ($barang->stok < $request->jml_brg_keluar) {
-            return redirect('/barangkeluar/create')->with('success', 'data data melebihi stok');
+            return redirect('/barangkeluar/create')->with('success', 'data barang melebihi stok');
         } else {
 
             BarangKeluar::create([
                 'no_barang_keluar'  =>  $request->no_barang_keluar,
                 'id_barang'         =>  $request->id_barang,
                 'id_user'           =>  $request->id_user,
-                'tgl_brg_keluar'     =>  $request->tgl_brg_keluar,
+                'tgl_brg_keluar'    =>  $request->tgl_brg_keluar,
                 'jml_brg_keluar'    =>  $request->jml_brg_keluar,
                 'total'             =>  $request->total
             ]);

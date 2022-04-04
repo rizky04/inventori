@@ -134,8 +134,23 @@ class BarangMasukController extends Controller
 
         $id_barang['id_barang'] = $request->id_barang;
         $ajax = Barang::where('id', $id_barang)->get();
+        $q = DB::table('barang_masuk')->select(DB::raw('MAX(RIGHT(no_barang_masuk,4)) as kode'));
+        $kd="";
+        if($q->count()>0)
+        {
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%04s", $tmp);
+            }
+        }
+        else
+        {
+            $kd = "0001";
+        }
 
-        return view('gudang.transaksi.barang_masuk.ajax', compact('ajax'));
+
+        return view('gudang.transaksi.barang_masuk.ajax', compact('ajax','kd'));
     }
 
 }
